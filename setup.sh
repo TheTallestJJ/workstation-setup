@@ -1,11 +1,23 @@
 #!/bin/bash
 
 PWD=$(pwd)
+home=~
 
-if [ "${PWD}/vimrc" != "$(readlink ~/.vimrc)" ]; then
-  if [ ! -e ~/.vimrc ]; then
-    mv ~/.vimrc ~/.vimrc.bac
+function link() {
+  from=$1
+  to=$2
+
+  mkdir -p ${from%\/*}
+
+  if [ "${to}" != "$(readlink ${from})" ]; then
+    if [ ! -e ${from} ]; then
+      mv "${from}" "${from}.bck"
+    fi
+  
+    ln -s "${to}" "${from}"
   fi
+}
 
-  ln -s ${PWD}/vimrc ~/.vimrc
-fi
+link "${home}/.vimrc" "${PWD}/vimrc"
+link "${home}/.config/starship.toml" "${PWD}/starship.toml"
+
