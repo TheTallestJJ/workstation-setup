@@ -41,13 +41,12 @@ if [ -z "$(which nix)" ]; then
   echo "No Nix!"
 fi
 
-# nix-channel --add https://nixos.org/channels/nixos-21.11 nixpkgs
-sudo nix-channel --update
-
-sudo nix-env -iA nixpkgs.home-manager
+nix-channel --add https://nixos.org/channels/nixos-21.11 nixpkgs
+nix-channel --update
 
 setup_fish_config $PWD
 
+link "${home}/.config/nixpkgs/home.nix" "${PWD}/home.nix"
 link "${home}/.config/fish/config.fish" "${PWD}/config.fish"
 link "${home}/.vimrc" "${PWD}/vimrc"
 link "${home}/.config/starship.toml" "${PWD}/starship.toml"
