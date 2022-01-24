@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 channel="nixos-21.11"
 PWD=$(pwd)
