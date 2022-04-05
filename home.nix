@@ -14,6 +14,8 @@
     pkgs.dotnet-sdk
     pkgs.starship
     pkgs.jq
+    pkgs.alacritty
+    pkgs.gh
   ];
 
   # This value determines the Home Manager release that your
